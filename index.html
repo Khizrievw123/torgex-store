@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TORGEX — Торговое оборудование</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#" class="logo">TORG<span>EX</span></a>
+
+    <nav class="navlinks">
+      <a href="#catalog">Каталог</a>
+      <a href="#promo">Акции</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Корзина
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="badge">ТОРГОВОЕ ОБОРУДОВАНИЕ • ГРОЗНЫЙ</div>
+
+    <h1>
+      Оборудование<br>
+      для <span>вашего магазина.</span>
+    </h1>
+
+    <p>
+      Манекены, вешалки, торговые стойки, зеркала,
+      экопанели и аксессуары для современного торгового пространства.
+    </p>
+
+    <div class="hero-buttons">
+      <a class="btn btn-primary" href="#catalog">Смотреть каталог</a>
+      <a class="btn btn-secondary" href="https://wa.me/79388075656" target="_blank">
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<section id="categories">
+
+  <div class="section-head">
+    <div>
+      <h2>Категории</h2>
+      <p>Выберите нужное оборудование и быстро найдите подходящий вариант.</p>
+    </div>
+  </div>
+
+  <div class="categories">
+
+    <div class="category" onclick="filterCategory('Вешалки')">
+      <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=900&q=85">
+      <div class="category-content">
+        <h3>👕 Вешалки</h3>
+        <span>Для одежды</span>
+      </div>
+    </div>
+
+    <div class="category" onclick="filterCategory('Манекены')">
+      <img src="https://images.unsplash.com/photo-1605763240000-7e93b172d754?auto=format&fit=crop&w=900&q=85">
+      <div class="category-content">
+        <h3>🧍 Манекены</h3>
+        <span>Фигуры и торсы</span>
+      </div>
+    </div>
+
+    <div class="category" onclick="filterCategory('Стеллажи')">
+      <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=900&q=85">
+      <div class="category-content">
+        <h3>🗄️ Стеллажи</h3>
+        <span>Торговые стойки</span>
+      </div>
+    </div>
+
+    <div class="category" onclick="filterCategory('Зеркала')">
+      <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=85">
+      <div class="category-content">
+        <h3>🪞 Зеркала</h3>
+        <span>Для торгового зала</span>
+      </div>
+    </div>
+
+    <div class="category" onclick="filterCategory('Экопанели')">
+      <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85">
+      <div class="category-content">
+        <h3>🧩 Экопанели</h3>
+        <span>Панели и аксессуары</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="promo">
+
+  <div class="promo">
+    <div>
+      <h2>Оптовые покупки выгоднее.</h2>
+      <p>При больших объёмах заказа действует дополнительная скидка.</p>
+    </div>
+
+    <a href="#catalog" class="btn btn-primary">Выбрать товары</a>
+  </div>
+
+</section>
+
+
+<section id="catalog">
+
+  <div class="section-head">
+    <div>
+      <h2>Каталог</h2>
+      <p>Товары в наличии и позиции под заказ.</p>
+    </div>
+  </div>
+
+  <div class="toolbar">
+
+    <div class="search">
+      <input
+        id="search"
+        type="search"
+        placeholder="🔎 Поиск товара..."
+        oninput="renderProducts()"
+      >
+    </div>
+
+    <select id="categoryFilter" onchange="renderProducts()">
+      <option value="Все">Все категории</option>
+      <option value="Вешалки">Вешалки</option>
+      <option value="Манекены">Манекены</option>
+      <option value="Стеллажи">Стеллажи</option>
+      <option value="Зеркала">Зеркала</option>
+      <option value="Экопанели">Экопанели</option>
+    </select>
+
+    <select id="stockFilter" onchange="renderProducts()">
+      <option value="Все">Наличие</option>
+      <option value="В наличии">В наличии</option>
+      <option value="Нет">Нет в наличии</option>
+    </select>
+
+    <select id="sortFilter" onchange="renderProducts()">
+      <option value="popular">Популярные</option>
+      <option value="low">Цена: сначала дешевле</option>
+      <option value="high">Цена: сначала дороже</option>
+    </select>
+
+  </div>
+
+  <div class="products" id="products"></div>
+
+</section>
+
+
+<section id="contacts">
+
+  <div class="contact-box">
+
+    <div>
+      <h2>Свяжитесь с нами</h2>
+      <p>
+        Беркат, Грозный.<br>
+        По вопросам наличия, доставки и крупных заказов
+        свяжитесь с нами удобным способом.
+      </p>
+    </div>
+
+    <div class="contact-links">
+
+      <a class="contact-link" href="tel:+79388075656">
+        📞 <strong>+7 938 807-56-56</strong>
+      </a>
+
+      <a class="contact-link"
+         href="https://wa.me/79388075656"
+         target="_blank">
+        💬 <strong>Написать в WhatsApp</strong>
+      </a>
+
+      <div class="contact-link">
+        📍 <strong>Беркат, Грозный</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+  © 2026 TORGEX — торговое оборудование
+</footer>
+
+
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+
+<aside class="cart" id="cart">
+
+  <div class="cart-head">
+    <h2>Корзина</h2>
+    <button class="close" onclick="closeCart()">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="cart-bottom">
+
+    <div class="total">
+      <span>Итого</span>
+      <span id="cartTotal">0 ₽</span>
+    </div>
+
+    <div class="delivery">
+      <label>
+        <input type="radio" name="delivery" value="Самовывоз" checked>
+        Самовывоз
+      </label>
+
+      <label>
+        <input type="radio" name="delivery" value="Доставка">
+        Доставка
+      </label>
+    </div>
+
+    <a
+      class="whatsapp"
+      id="whatsappOrder"
+      href="#"
+      target="_blank">
+      💬 Оформить заказ в WhatsApp
+    </a>
+
+  </div>
+
+</aside>
+
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <button class="modal-close" onclick="closeModal()">×</button>
+
+    <div class="modal-content">
+
+      <div class="modal-image">
+        <img id="modalImg" src="">
+      </div>
+
+      <div class="modal-info">
+
+        <div class="product-category" id="modalCategory"></div>
+
+        <h2 id="modalTitle"></h2>
+
+        <div class="modal-price" id="modalPrice"></div>
+
+        <div class="specs" id="modalSpecs"></div>
+
+        <button class="btn btn-primary" id="modalAdd">
+          Добавить в корзину
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
